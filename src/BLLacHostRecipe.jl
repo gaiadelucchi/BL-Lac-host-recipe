@@ -2,6 +2,7 @@ module BLLacHostRecipe
 
 using GModelFit
 using QSFit; using QSFit.QSORecipes; using GModelFitViewer
+using DataStructures
 
 # --------------------------------------------------------------------------------------------------------------------------
 
