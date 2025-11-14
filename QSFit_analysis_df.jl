@@ -1,38 +1,10 @@
-
-## Testing spectra on QSFit - Julia 
-
-using GModelFit
-using QSFit; using QSFit.QSORecipes; using GModelFitViewer
-
+using BLLacHostRecipe
 using DataFrames
-using DataStructures
-using Statistics
-
+using QSFit
 using CSV 
-using FITSIO
 
-# --------------------------------------------------------------------------------------------------------------------------
 
-import QSFit.QSORecipes.add_qso_continuum!
 
-import QSFit: set_lines_dict!
-import QSFit.QSORecipes: fit!
-
-recipe = CRecipe{Type1}()
-
-abstract type MyRecipe <: Type1 end
-function set_lines_dict!(recipe::CRecipe{<: MyRecipe})
-    recipe.lines = OrderedDict{Symbol, QSFit.SpectralLine}()
-    return get_lines_dict(recipe)
-end
-
-function fit!(recipe::CRecipe{<: MyRecipe}, resid::GModelFit.Residuals)
-    GModelFit.update!(resid.meval)
-    if GModelFit.nfree(resid) == 0
-        return nothing
-    end
-    return @invoke fit!(recipe::CRecipe{<: Type1}, resid)
-end
 #-----------------------------------------------------------------------------------------------------------
 function QSFit_analysis(spectrum_path, host_template, z)
 
@@ -95,7 +67,6 @@ end
 
 #-----------------------------------------------------------------------------------------------------------------------------
 function retrieve_input(file)
-   
     #file name structure: spec_HOST TYPE_LUM HOST_BIN LUM BLLAC_RATIO HOST/BLAZAR_REDSHIFT.txt
     #split(a, '_')[2] = HOST TYPE
     #split(a, '_')[3] = LUMINOSITY OF HOST
@@ -121,8 +92,6 @@ function retrieve_input(file)
         shift = "ORIGINAL"
     end
         
-    
-        
     return host_in, host_L, gamma_bin, ratio_host_blazar, z, shift
 end
 
@@ -137,8 +106,7 @@ end
 #dir_path = "./spectra_shiftedSED/" 
 #dir_path = "./noisy_fluxes_10_plusshiftedSED/" 
 
-dir_path = "./noisy_fluxes_5/" 
-
+dir_path = "10SNR_withshiftedSED"
 
 files = retrieve_files(dir_path)
 
@@ -150,7 +118,7 @@ merge_df = DataFrame()
 for file in files
     host_input, host_L, Bl_gamma_bin, ratio_h_b, redshift, shift = retrieve_input(file)
     spec_name = file  
-    spec_path = dir_path*file 
+    spec_path = joinpath(dir_path, file)
     
     for host in host_temp 
         QSFit_res = QSFit_analysis(spec_path, host, redshift)
