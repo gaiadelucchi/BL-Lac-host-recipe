@@ -6,7 +6,7 @@ This repository contains the code to reproduce the analysis discussed in the pap
 
 *Gaia Delucchi, Tullia Sbarrato, Giorgio Calderone, Chiara Righi, Silvano Tosi, and Boris Sbarufatti*
 
-(Submitted to ApJ).
+(Accepted by ApJ).
 
 
 ## Workflow
