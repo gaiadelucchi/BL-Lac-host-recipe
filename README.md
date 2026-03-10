@@ -13,7 +13,7 @@ This repository contains the code to reproduce the analysis discussed in the pap
 
 - Download and install [Julia](https://julialang.org/downloads/);
 - Download the current code [here](https://github.com/gaiadelucchi/BL-Lac-host-recipe/archive/refs/heads/main.zip);
-- Download the input data for the analysis [here](https://drive.google.com/drive/folders/1l1-9qVmnqUeuIWh-vGAVdVeBzaGZUD65?usp=sharing);
+- Download the input data for the analysis [here](https://drive.google.com/drive/folders/1f8_7IKyEBBVkvz4YsfUviBaxuY3WqkJn?usp=sharing);
 - Type the following commands:
   - `unzip BL-Lac-host-recipe-main.zip`;
   - `cd BL-Lac-host-recipe-main`;
