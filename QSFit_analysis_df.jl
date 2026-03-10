@@ -103,10 +103,8 @@ function retrieve_files(path)
 end
 #-----------------------------------------------------------------------------------------------------------------------------
 
-#dir_path = "./spectra_shiftedSED/" 
-#dir_path = "./noisy_fluxes_10_plusshiftedSED/" 
 
-dir_path = "10SNR_withshiftedSED"
+dir_path = "noisy_fluxes_10shifted"
 
 files = retrieve_files(dir_path)
 
